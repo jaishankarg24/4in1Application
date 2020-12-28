@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+{% extends "myshop/base.html" %}
+{% load static %}
+{% block base_block %}
+<html>
+<head>
+	<title>Shopping</title>
+	<style type="text/css">
+		.card{
+			margin-right: 20px;
+			margin-left: 20px;
+		}
+	</style>
+</head>
+<body>
+<h1>Shopping Page</h1>
+	<div class="container-fluid">
+		<div class="row">
+		<div class="col-lg-3 mx-auto mt-5 mb-5">
+			<div class="list-group">
+
+				<a href="#" class="list-group-item list-group-item-action">All Products</a>
+
+				{% for category in categories %}
+				<a href="#" class="list-group-item list-group-item-action">{{ category.name}}</a>
+				{% endfor %}
+			</div>
+		</div>
+
+		<div id='products' class="col-lg-9 mx-auto">
+		{% if products %}
+
+			<div class="row mx-auto" >
+			{% for p in products  %}
+				<div class="card mx-auto mt-5 mb-5" style="width: 18rem; height :40rem;">
+				<img src="{{ p.image.url }}" class="card-img-top" alt="...">
+				<div class="card-body">
+				  <h5 class="card-title"><strong>{{p.name}}</strong></h5>
+				  <p class="card-text"><strong>Rs {{p.price}}</strong></p>
+				  <p class="card-text">{{p.information}}</p>
+				  <button data-product="{{p.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+				</div>
+				</div>
+			{% endfor %}
+			</div>
+
+			
+		{% else %}
+			<h1>NO DATA TO DISPLAY</h1>
+			
+		{% endif %}
+	</div>
+</div>
+</div>
+</body>
+</html>
+{% endblock base_block %}

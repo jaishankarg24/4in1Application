@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+{% extends "myshop/base.html" %}
+{% block base_block %}
+{% load static %}
+<html>
+<head>
+	<title>SignUp</title>
+</head>
+<body>
+
+	<style type="text/css">
+		.jumbotron{
+			margin:30px;
+			padding: 50px;
+			color: white;
+			background:black;
+		}
+	</style>
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Signup to enjoy the facilities from The MYAPPLICATION.</h1>
+			<form method="POST">
+				{{ form.as_p }}
+				{% csrf_token %}
+				<input type="submit" value="Sign up">
+			</form>
+		</div>
+	</div>    
+
+</body>
+{% endblock base_block %}

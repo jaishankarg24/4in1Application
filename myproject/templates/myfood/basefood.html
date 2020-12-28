@@ -1,0 +1,204 @@
+<!doctype html>
+{% extends "myfood/food.html" %}
+<html lang="en">
+  <head>
+   
+ 
+  </head>
+  <body>
+ {% block content_block %}
+    <div id="header-img">
+      <header>
+        <div class="d-flex justify-content-center">
+          <div class="nav-menu">
+            <p class="float-left text-white m-0 m-3 h4 ">My Food App</p>
+         
+          </div>
+
+        </div>
+      </header>
+
+      <div class="container">
+
+        <div class="d-flex justify-content-center header-flex">
+          <p class="food">Food </p>
+
+        </div>
+
+
+        <div class="wrapper">
+          <div class="search_box">
+              
+                
+             
+              <form class="form-inline my-2 my-lg-0" method="get" >
+
+                  {{ filter_restaurant_by_city.form.as_p}}
+                    {% csrf_token %}
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width: 300px" >
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+             
+          </div>
+        </div>
+      </div>  
+    </div>
+
+    <div class="second-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card">
+              <img src="https://cdn.guidingtech.com/imager/assets/189869/HD-Mouth-Watering-Food-Wallpapers-for-Desktop-12_4d470f76dc99e18ad75087b1b8410ea9.jpg?1573743472" alt="" height="100%" width="100%">
+              <div class="card-bottom">
+                <p class="h4 m-0 mt-2 text-center"> order online</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeDKPtCBFlZyNxA07XFVguH8jzhmkSsjgqUg&usqp=CAU" alt="" height="100%" width="100%">
+              <div class="card-bottom">
+                <p class="h4 m-0 mt-2 text-center"> order online</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card">
+              <img src="https://images.all-free-download.com/images/graphicthumb/delicious_food_04_hd_pictures_167550.jpg" alt="" height="100%" width="100%">
+              <div class="card-bottom">
+                <p class="h4 m-0 mt-2 text-center"> order online</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card">
+              <img src="https://images.all-free-download.com/images/graphicthumb/food_picture_03_hd_pictures_167556.jpg" alt="" height="100%" width="100%">
+              <div class="card-bottom">
+                <p class="h4 m-0 mt-2 text-center"> order online</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+    <hr>
+
+
+    <div class="container-fluid">
+    <div class="row">
+        <div id='products' class="col-lg-9 mx-auto">
+
+     {% if filter_restaurant_by_city.qs %}
+     <h1> Available Restauants</h1>
+     <div class="row mx-auto" >
+       {% for r in filter_restaurant_by_city.qs %}  
+
+        <div class="card mx-auto mt-5 mb-5" style="width: 18rem; height :26rem;">
+        <img src="{{ r.restaurant_img.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><strong>{{r.restaurant_name}}</strong></h5>
+          <p class="card-text"><strong> {{r.area}}</strong></p>
+          <p class="card-text"><strong>{{r.city}}</strong></p>
+     
+          <a class="btn btn-outline-secondary add-btn update-cart" href="{% url 'restaurant_detail' r.pk %}">View Restaurant</a>
+        </div>
+        </div>
+      {% endfor %}
+      </div>
+
+      
+    {% else %}
+      <h1>NO Restaurants TO DISPLAY</h1>
+      
+    {% endif %}
+  </div>
+      
+   
+    
+  </div>
+
+    <section id="popular-locations">
+      <div class="container">
+        <div class="d-flex">
+          <p class="popular-heading">
+            Popular Restourents near your location <span></span>
+          </p>
+        </div>
+        <div class="row mt-4">
+          <div class="col-md-4">
+            <div class="d-flex align-items-center locations-div">
+              <p class="m-0 ml-3 h5" id="h">Area        </p>
+              <i class="fa fa-arrow-right ml-auto mr-4"></i>
+
+            </div>
+
+          </div>
+          <div class="col-md-4">
+            <div class="d-flex align-items-center locations-div">
+              <p class="m-0 ml-3 h5" id="h">Area </p>
+              <i class="fa fa-arrow-right ml-auto mr-4"></i>
+
+            </div>
+
+          </div>
+          <div class="col-md-4">
+            <div class="d-flex align-items-center locations-div">
+              <p class="m-0 ml-3 h5" id="h">Area </p>
+              <i class="fa fa-arrow-right ml-auto mr-4"></i>
+
+            </div>
+
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-md-4">
+            <div class="d-flex align-items-center locations-div">
+              <p class="m-0 ml-3 h5" id="h">Area </p>
+              <i class="fa fa-arrow-right ml-auto mr-4"></i>
+
+            </div>
+
+          </div>
+          <div class="col-md-4">
+            <div class="d-flex align-items-center locations-div">
+              <p class="m-0 ml-3 h5" id="h">Area </p>
+              <i class="fa fa-arrow-right ml-auto mr-4"></i>
+
+            </div>
+
+          </div>
+          <div class="col-md-4">
+            <div class="d-flex align-items-center locations-div">
+              <p class="m-0 ml-3 h5" id="h">Area </p>
+              <i class="fa fa-arrow-right ml-auto mr-4"></i>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </section>
+    
+<footer>
+    <div id="myfood"  class="con">
+     
+     
+            <button> Contact us</button>
+
+         
+    </div>
+  </footer>
+ {% endblock content_block %}
+  
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

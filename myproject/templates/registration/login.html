@@ -1,0 +1,21 @@
+{% extends "myshop/base.html" %}
+{% block base_block %}
+{% load static %}
+<style type="text/css">
+	.div{
+		padding: 50px;
+		margin: 50px;
+		background: purple;
+		color: white;
+	}
+</style>
+	<div class="div" align="center">
+	<h1> Please Login to view and access our application</h1>
+	<form method="POST">
+		{{ form.as_p }}
+		{% csrf_token %}
+		<button type="submit">Login</button>		
+	</form>
+</div>
+	
+{% endblock base_block %}

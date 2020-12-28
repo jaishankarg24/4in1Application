@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+{% extends "mymovie/basemovie.html" %}
+{% load static %}
+<html>
+<head>
+	<title>My Movie</title>
+</head>
+<body>
+
+	{% block content_block %}
+	<div id="header-img">
+      <header>
+        <div class="d-flex justify-content-center">
+          <div class="nav-menu">
+            <p class="float-left text-white m-0 m-3 h4 ">My Movie App</p>
+          
+          </div>
+
+        </div>
+      </header>
+
+      <div class="container">
+
+        <div class="d-flex justify-content-center header-flex">
+          <p class="food">Movie </p>
+
+        </div>
+
+
+        <div class="wrapper">
+          <div class="search_box">
+              
+                
+             
+              <form class="form-inline my-2 my-lg-0" method="get" >
+
+                  {{ filter_theatre_by_city.form.as_p}}
+                    {% csrf_token %}
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width: 300px" >
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+             
+          </div>
+        </div>
+      </div>  
+    </div>
+	
+
+	   <hr>
+
+
+    <div class="container-fluid">
+    <div class="row">
+        <div id='products' class="col-lg-9 mx-auto">
+
+     {% if filter_theatre_by_city.qs %}
+     <h1> Available Theatres</h1>
+     <div class="row mx-auto" >
+       {% for r in filter_theatre_by_city.qs %}  
+
+        <div class="card mx-auto mt-5 mb-5" style="width: 18rem; height :26rem;">
+        <img src="{{ r.theatre_img.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><strong>{{r.theatre_name}}</strong></h5>
+          <p class="card-text"><strong> {{r.area}}</strong></p>
+          <p class="card-text"><strong>{{r.city}}</strong></p>
+         
+          <a class="btn btn-outline-secondary add-btn update-cart" href="{% url 'theatre_detail' r.pk %}">View Theatre</a>
+        </div>
+        </div>
+      {% endfor %}
+      </div>
+
+      
+    {% else %}
+      <h1>NO Theatres TO DISPLAY</h1>
+      
+    {% endif %}
+  </div>
+
+	{% endblock content_block %}
+	
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% extends "myshop/base.html" %}
+{% block base_block %}
+{% load static %}
+<body>
+	<style type="text/css">
+		.jumbotron .container{
+			margin:50px;
+			padding: 100px;
+		}
+	</style>
+	<div class="jumbotron">
+		<div class="container" align="center">
+			<h1>Thanks for Spending your quality of time.</h1>
+			<h2>Please visit again</h2>
+
+			<h2>Please login again by clicking on login button</h2>
+			<a href="/accounts/login/" class="btn btn-primary">Login</a>
+		</div>
+	</div> 
+</body>   
+{% endblock base_block %}
